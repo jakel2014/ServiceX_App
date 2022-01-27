@@ -225,6 +225,10 @@ class SubmitTransformationRequest(ServiceXResource):
         except ValueError as eek:
             self.logger.exception("Failed to submit transform request")
             return {'message': f'Failed to submit transform request: {str(eek)}'}, 400
-        except Exception:
+        except Exception as eek:
+            print("Exception in submit ", eek)
+
+            import traceback
+            traceback.print_exc()
             self.logger.exception("Got exception while submitting transformation request")
             return {'message': 'Something went wrong'}, 500
